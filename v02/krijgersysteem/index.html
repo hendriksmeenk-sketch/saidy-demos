@@ -1,0 +1,46 @@
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Krijgersysteem: definitie, sparks, dagpraktijk</title><style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#f6f4ef;color:#1d1d1d;line-height:1.45;font-size:17px}
+.banner{position:sticky;top:0;z-index:9;background:#b3261e;color:#fff;text-align:center;font-weight:700;padding:10px 8px;letter-spacing:.5px}
+main{max-width:760px;margin:0 auto;padding:14px}
+h1{font-size:1.5em;margin:.4em 0}h2{font-size:1.2em;margin:1.2em 0 .4em}h3{font-size:1.05em;margin:.8em 0 .3em}
+.card{background:#fff;border-radius:14px;padding:14px;margin:12px 0;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.muted{color:#666;font-size:.9em}.tag{display:inline-block;background:#eee;border-radius:99px;padding:2px 10px;font-size:.8em;margin:2px}
+.tag.c{background:#fff3cd;color:#7a5b00}.tag.p{background:#e6e0f8;color:#4b2e8f}.tag.r{background:#fde2e1;color:#8b1a14}.tag.g{background:#dff3e7;color:#14633a}
+button,.btn{font:inherit;min-height:48px;padding:10px 16px;border-radius:12px;border:2px solid #333;background:#fff;cursor:pointer;margin:4px 4px 4px 0}
+button.on,.btn.on{background:#1d1d1d;color:#fff}button.big{width:100%;min-height:110px;font-size:1.4em;font-weight:700;background:#1a9e6e;color:#fff;border:none;border-radius:20px}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}.tabs button{flex:0 0 auto}
+.hide{display:none}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+table{width:100%;border-collapse:collapse;font-size:.92em}td,th{border-bottom:1px solid #eee;padding:6px 4px;text-align:left;vertical-align:top}
+.mail{background:#fbfbfb;border:1px dashed #999;border-radius:10px;padding:12px;white-space:pre-wrap;font-family:Georgia,serif}
+.open{background:#fff8e1;border-left:5px solid #f08c00}.open li{margin:4px 0}
+.ph{border:2px dashed #b3261e;background:#fff5f5}
+a{color:#0b57d0}
+.step{display:flex;gap:6px;overflow-x:auto}.step button{font-size:.85em;min-height:44px}
+</style></head>
+<body><div class="banner">v0.2 DEMO, nepdata</div><main><p><a href="../index.html">&larr; terug naar de lijst</a></p><h1>Krijgersysteem: definitie, sparks, dagpraktijk</h1>
+<p class="muted">Voorbeeld om te kijken en te klikken. Niet af, niet gedeeld. Alle namen, ritten en cijfers zijn verzonnen. Volledige versie pas bij v1.</p>
+
+<section class="card ph"><span class="tag c">CONCEPT</span> <span class="tag r">Daan formuleert dit zelf</span>
+<h2>Wat is een Krijger?</h2>
+<p style="font-size:1.15em"><i>[Plek voor Daans eigen zin.]</i></p>
+<p class="muted">Werkvoorstel om op te reageren, geen definitie: "Een Krijger is een stille leider die honderd ideeën heeft, er drie laat branden, keurt wat de AI bouwt, en als enige verstuurt." Bron: v0.1 en inventaris. Het woord betekent nu nog drie dingen (persona, leerlingprofiel, naam van de academie); v1 kiest er één.</p>
+<p class="muted">Identiteit: indigenous (Type 1, soil-web). Geen geleende titels of ceremonies.</p></section>
+
+<section class="card"><h2>3 actieve sparks</h2><p class="muted">Rule of 3: drie branden, de rest slaapt veilig. Voorbeeldkeuze, Daan kiest de echte.</p>
+<div id="sparks"></div><p class="muted">97 sparks slapen. <button onclick="alert('Demo: slapende sparks staan in de lijst voor v1.')">Bekijk slapende</button></p></section>
+
+<section class="card"><h2>Dagelijkse krijgerspraktijk</h2><p class="muted">Tik een vakje als het gedaan is. Wordt alleen in deze browser bewaard. Begint gevuld met nepdagen.</p>
+<div style="overflow-x:auto"><table id="trk"></table></div><p id="sum"></p>
+<button onclick="localStorage.removeItem('krijger-v02');load();draw()">Terug naar nepdata</button></section>
+
+<div class="card open"><h2>Wat ontbreekt voor v1</h2><ul><li>Daan schrijft de definitie van "Krijger" in één eigen zin (nu concept).</li><li>Daan kiest de 3 echte actieve sparks, elk met datum en getal.</li><li>De praktijken in de tracker door Daan laten vaststellen (nu voorbeeld).</li><li>Lijst van de 97 slapende sparks vullen.</li><li>"Sovereign Indigenous Warriors Framework" ophalen uit de grok.com-geschiedenis.</li><li>State ledger: één bron die alle AI's op dezelfde stand houdt.</li><li>TVP-uitslag 5 nov als bewijs van de leermotor.</li></ul></div><p><a href="../index.html">&larr; terug naar de lijst</a></p></main><script>
+const SP=[['Taxi-toolset: M1 op de demobank','voor datum [Daan]','1 module + 1 wow',40],['TVP-examen halen','5 nov 2026','leerplan Kruipen, Lopen, Rennen',70],['KINETIX: de lus slotmail tot vol potentie','voor datum [Daan]','5 testgezinnen',20]];
+document.getElementById('sparks').innerHTML=SP.map((s,i)=>`<div class="card" style="border-left:6px solid #F08C00"><b>Spark ${i+1}: ${s[0]}</b><br><span class="muted">Datum: ${s[1]} &middot; getal: ${s[2]}</span><div style="background:#eee;border-radius:8px;height:14px;margin-top:6px"><div style="width:${s[3]}%;background:#1a9e6e;height:14px;border-radius:8px"></div></div><span class="muted">${s[3]}% (nep)</span></div>`).join('');
+const PR=['Stilte 5 min','1 besluit (max 3 per week)','Bewegen 20 min','Leren 20 min (TVP of Chinees)','Avondlog: wat brandt, wat slaapt'];
+const D=['Ma','Di','Wo','Do','Vr','Za','Zo'];let g;
+function load(){g=JSON.parse(localStorage.getItem('krijger-v02')||'null')||[[1,1,0,1,0,0,0],[1,0,1,0,0,0,0],[0,1,1,1,0,0,0],[1,1,0,1,0,0,0],[1,1,1,0,0,0,0]];}
+function draw(){let h='<tr><th>Praktijk</th>'+D.map(d=>`<th>${d}</th>`).join('')+'</tr>';
+PR.forEach((p,i)=>{h+=`<tr><td>${p}</td>`+D.map((d,j)=>`<td><button style="min-width:44px;background:${g[i][j]?'#1a9e6e':'#fff'};color:${g[i][j]?'#fff':'#000'}" onclick="g[${i}][${j}]^=1;localStorage.setItem('krijger-v02',JSON.stringify(g));draw()">${g[i][j]?'✓':''}</button></td>`).join('')+'</tr>';});
+document.getElementById('trk').innerHTML=h;const n=g.flat().filter(x=>x).length;document.getElementById('sum').textContent=`Deze week: ${n} van 35 gedaan. Geen streak, geen straf; morgen telt weer.`;}
+load();draw();
+</script></body></html>

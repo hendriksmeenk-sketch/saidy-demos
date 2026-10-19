@@ -1,0 +1,64 @@
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Mentale zorg: check-in, reflectie, stemkaart</title><style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#f6f4ef;color:#1d1d1d;line-height:1.45;font-size:17px}
+.banner{position:sticky;top:0;z-index:9;background:#b3261e;color:#fff;text-align:center;font-weight:700;padding:10px 8px;letter-spacing:.5px}
+main{max-width:760px;margin:0 auto;padding:14px}
+h1{font-size:1.5em;margin:.4em 0}h2{font-size:1.2em;margin:1.2em 0 .4em}h3{font-size:1.05em;margin:.8em 0 .3em}
+.card{background:#fff;border-radius:14px;padding:14px;margin:12px 0;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.muted{color:#666;font-size:.9em}.tag{display:inline-block;background:#eee;border-radius:99px;padding:2px 10px;font-size:.8em;margin:2px}
+.tag.c{background:#fff3cd;color:#7a5b00}.tag.p{background:#e6e0f8;color:#4b2e8f}.tag.r{background:#fde2e1;color:#8b1a14}.tag.g{background:#dff3e7;color:#14633a}
+button,.btn{font:inherit;min-height:48px;padding:10px 16px;border-radius:12px;border:2px solid #333;background:#fff;cursor:pointer;margin:4px 4px 4px 0}
+button.on,.btn.on{background:#1d1d1d;color:#fff}button.big{width:100%;min-height:110px;font-size:1.4em;font-weight:700;background:#1a9e6e;color:#fff;border:none;border-radius:20px}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}.tabs button{flex:0 0 auto}
+.hide{display:none}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+table{width:100%;border-collapse:collapse;font-size:.92em}td,th{border-bottom:1px solid #eee;padding:6px 4px;text-align:left;vertical-align:top}
+.mail{background:#fbfbfb;border:1px dashed #999;border-radius:10px;padding:12px;white-space:pre-wrap;font-family:Georgia,serif}
+.open{background:#fff8e1;border-left:5px solid #f08c00}.open li{margin:4px 0}
+.ph{border:2px dashed #b3261e;background:#fff5f5}
+a{color:#0b57d0}
+.step{display:flex;gap:6px;overflow-x:auto}.step button{font-size:.85em;min-height:44px}
+</style></head>
+<body><div class="banner">v0.2 DEMO, nepdata</div><main><p><a href="../index.html">&larr; terug naar de lijst</a></p><h1>Mentale zorg: check-in, reflectie, stemkaart</h1>
+<p class="muted">Voorbeeld om te kijken en te klikken. Niet af, niet gedeeld. Alle namen, ritten en cijfers zijn verzonnen. Volledige versie pas bij v1.</p>
+
+<div class="card" style="background:#eef6f1"><b>Geen therapie.</b> Dit is een oefenhulp voor elke dag. Het vervangt geen behandeling en belooft geen genezing. Bij nood: bel de huisarts of 113.
+<p class="muted">Methode-laag: geweldloze communicatie (NVC), lichaam als land, indigenous (Type 1, soil-web). Geïnspireerd op I-psy psycho-educatie; rechten op dat materiaal nog regelen. Geen privé- of behandeldata.</p></div>
+
+<div class="tabs" id="tabs"><button data-t="a" class="on">1. Check-in</button><button data-t="b">2. Reflectie</button><button data-t="c">3. Stemkaart</button></div>
+<button id="braak" style="width:100%">Vandaag is het te veel (braakland-modus)</button>
+<section class="card hide" id="bl"><h2>Braakland</h2><p>Het land rust vandaag. Je hoeft niets in te vullen.</p><p style="font-size:1.3em">Voeten op de grond. Drie keer rustig uitademen. Klaar.</p><button onclick="document.getElementById('bl').classList.add('hide')">Terug</button></section>
+
+<section class="card" id="a"><h2>Check-in (nepgebruiker)</h2>
+<h3>Hoeveel energie heb ik?</h3><div class="row" id="en"></div>
+<h3>Waar voel ik het in mijn lijf?</h3><div class="row" id="lijf"></div>
+<h3>Welke kleur heeft het?</h3><div class="row" id="kl"></div>
+<p id="cisum" class="muted"></p><button onclick="go('b')">Verder naar reflectie</button></section>
+
+<section class="card hide" id="b"><h2>Reflectie (vier stappen, NVC)</h2>
+<label><b>Wat zag of hoorde ik?</b> (zonder oordeel)</label><textarea rows="2" style="width:100%">Vanochtend werd mijn plan op het laatste moment veranderd.</textarea>
+<label><b>Wat voel ik?</b></label><div class="row" id="gev"></div>
+<label><b>Wat heb ik nodig?</b></label><div class="row" id="beh"></div>
+<label><b>Wat vraag ik (aan mezelf of een ander)?</b></label><textarea rows="2" style="width:100%">Morgen vraag ik om een dag van tevoren te horen als iets verandert.</textarea>
+<p class="muted">Nepvoorbeeld. Niets wordt opgeslagen.</p><button onclick="go('c')">Verder naar stemkaart</button></section>
+
+<section class="card hide" id="c"><h2>Voorouder-stemkaart</h2>
+<p>Hier komt straks één stem uit de 17 voorouder-persona's die Daan met Grok Heavy maakte. Die zijn <b>nog niet opgehaald</b>. Daarom staan hier drie lege plekken.</p>
+<div id="slots"></div>
+<p class="muted">De demo kiest een plek op basis van je check-in. Geen geleende ceremonies of titels; de stem gebruikt alleen Daans eigen woorden zodra die er zijn.</p></section>
+
+<div class="card open"><h2>Wat ontbreekt voor v1</h2><ul><li>De 17 voorouder-persona's ophalen uit Grok Heavy (namen, rollen, stem). Nu 3 placeholders.</li><li>Rechten op het I-psy-materiaal regelen; bronvermelding Rosales Meza.</li><li>Elke therapie- of genezingsclaim eruit laten checken (juridisch).</li><li>Eén canonieke werkboekversie kiezen (er zijn er 3).</li><li>Besluiten of en waar check-ins bewaard worden (nu niets opgeslagen).</li><li>Daan zegt de droom van dit project in één eigen zin.</li><li>Zorgsysteem voor een naaste in het buitenland: bestaat nog niet, Daan levert aan.</li></ul></div><p><a href="../index.html">&larr; terug naar de lijst</a></p></main><script>
+function go(t){document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x.dataset.t===t));['a','b','c'].forEach(id=>document.getElementById(id).classList.toggle('hide',id!==t));if(t==='c')slots();}
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>go(b.dataset.t));
+document.getElementById('braak').onclick=()=>document.getElementById('bl').classList.remove('hide');
+let ci={en:2,lijf:'borst',kl:'oranje'};
+function pick(id,arr,key,fmt){const el=document.getElementById(id);el.innerHTML='';arr.forEach(v=>{const b=document.createElement('button');b.innerHTML=fmt?fmt(v):v;if(ci[key]===v)b.classList.add('on');b.onclick=()=>{ci[key]=v;draw();};el.appendChild(b);});}
+const F={1:'😟',2:'😕',3:'😐',4:'🙂',5:'😄'},KC={rood:'#D62828',oranje:'#F08C00',geel:'#F2C200',lichtgroen:'#8BC34A',groen:'#1A9E6E'};
+let gev=['onrustig'],beh=['voorspelbaarheid'];
+function multi(id,arr,list){const el=document.getElementById(id);el.innerHTML='';arr.forEach(v=>{const b=document.createElement('button');b.textContent=v;if(list.includes(v))b.classList.add('on');b.onclick=()=>{const i=list.indexOf(v);i<0?list.push(v):list.splice(i,1);draw();};el.appendChild(b);});}
+function draw(){pick('en',[1,2,3,4,5],'en',v=>F[v]);pick('lijf',['hoofd','keel','borst','buik','benen'],'lijf');
+pick('kl',Object.keys(KC),'kl',v=>`<span style="display:inline-block;width:18px;height:18px;border-radius:50%;background:${KC[v]};vertical-align:middle"></span> ${v}`);
+multi('gev',['moe','onrustig','boos','verdrietig','rustig','blij'],gev);multi('beh',['rust','voorspelbaarheid','gezien worden','ruimte','verbinding','bewegen'],beh);
+document.getElementById('cisum').textContent=`Vandaag: energie ${F[ci.en]}, gevoeld in ${ci.lijf}, kleur ${ci.kl}.`;}
+function slots(){const k=ci.en<=2?0:ci.en===3?1:2;const why=['voor dagen met weinig energie','voor dagen in het midden','voor dagen met veel energie'];
+document.getElementById('slots').innerHTML=[0,1,2].map(i=>`<div class="card ph" style="${i===k?'outline:4px solid #1a9e6e':''}"><span class="tag r">PLACEHOLDER</span> <b>Voorouder-persona ${i+1} van 17</b><p>Naam: [nog niet opgehaald]<br>Rol: [nog niet opgehaald]<br>Stem: [nog niet opgehaald]</p><p class="muted">Plek ${why[i]}${i===k?' (gekozen door je check-in)':''}. Jouw behoefte vandaag: ${beh.join(', ')||'niets gekozen'}.</p></div>`).join('');}
+draw();
+</script></body></html>

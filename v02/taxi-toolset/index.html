@@ -1,0 +1,80 @@
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Taxi-toolset: dashboard van de ondernemer</title><style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#f6f4ef;color:#1d1d1d;line-height:1.45;font-size:17px}
+.banner{position:sticky;top:0;z-index:9;background:#b3261e;color:#fff;text-align:center;font-weight:700;padding:10px 8px;letter-spacing:.5px}
+main{max-width:760px;margin:0 auto;padding:14px}
+h1{font-size:1.5em;margin:.4em 0}h2{font-size:1.2em;margin:1.2em 0 .4em}h3{font-size:1.05em;margin:.8em 0 .3em}
+.card{background:#fff;border-radius:14px;padding:14px;margin:12px 0;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.muted{color:#666;font-size:.9em}.tag{display:inline-block;background:#eee;border-radius:99px;padding:2px 10px;font-size:.8em;margin:2px}
+.tag.c{background:#fff3cd;color:#7a5b00}.tag.p{background:#e6e0f8;color:#4b2e8f}.tag.r{background:#fde2e1;color:#8b1a14}.tag.g{background:#dff3e7;color:#14633a}
+button,.btn{font:inherit;min-height:48px;padding:10px 16px;border-radius:12px;border:2px solid #333;background:#fff;cursor:pointer;margin:4px 4px 4px 0}
+button.on,.btn.on{background:#1d1d1d;color:#fff}button.big{width:100%;min-height:110px;font-size:1.4em;font-weight:700;background:#1a9e6e;color:#fff;border:none;border-radius:20px}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}.tabs button{flex:0 0 auto}
+.hide{display:none}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+table{width:100%;border-collapse:collapse;font-size:.92em}td,th{border-bottom:1px solid #eee;padding:6px 4px;text-align:left;vertical-align:top}
+.mail{background:#fbfbfb;border:1px dashed #999;border-radius:10px;padding:12px;white-space:pre-wrap;font-family:Georgia,serif}
+.open{background:#fff8e1;border-left:5px solid #f08c00}.open li{margin:4px 0}
+.ph{border:2px dashed #b3261e;background:#fff5f5}
+a{color:#0b57d0}
+.step{display:flex;gap:6px;overflow-x:auto}.step button{font-size:.85em;min-height:44px}
+</style></head>
+<body><div class="banner">v0.2 DEMO, nepdata</div><main><p><a href="../index.html">&larr; terug naar de lijst</a></p><h1>Taxi-toolset: dashboard van de ondernemer</h1>
+<p class="muted">Voorbeeld om te kijken en te klikken. Niet af, niet gedeeld. Alle namen, ritten en cijfers zijn verzonnen. Volledige versie pas bij v1.</p>
+
+<div class="card"><b>Nep-ondernemer:</b> Taxi Demo (verzonnen) &middot; 1 bus, 8 stoelen &middot; werkt voor "de vervoerder" &middot; maandag (nepdag)
+<p class="muted">Het zitplan is één module. Het product is het hele gereedschap van de ondernemer, ook de omgang met de vervoerder. Eigendom: indigenous (Type 1, soil-web).</p>
+<div class="tabs" id="tabs"><button data-t="plan" class="on">Dagplanning</button><button data-t="zit">Zitplan</button><button data-t="uren">Uren en verlof</button><button data-t="comm">Vervoerder</button><button data-t="dos">Bewijs en dossier</button></div></div>
+
+<section class="card" id="plan"><h2>Dagplanning</h2>
+<table><tr><th>Tijd</th><th>Rit</th><th>Van, naar</th><th>Pers.</th><th>Status</th></tr>
+<tr><td>07:10</td><td>R-01 HEEN</td><td>Stop A, Stop B, Stop C, Locatie Noord</td><td>5</td><td><span class="tag g">klaar</span></td></tr>
+<tr><td>08:05</td><td>R-02 HEEN</td><td>Stop D, Locatie Oost</td><td>2</td><td><span class="tag c">wijziging</span></td></tr>
+<tr><td>12:30</td><td>R-03 losse rit</td><td>Locatie Oost, Stop E</td><td>1</td><td><span class="tag">gepland</span></td></tr>
+<tr><td>15:00</td><td>R-04 TERUG</td><td>Locatie Noord, Stop C, B, A</td><td>5</td><td><span class="tag">gepland</span></td></tr>
+<tr><td>16:10</td><td>R-05 TERUG</td><td>Locatie Oost, Stop D</td><td>2</td><td><span class="tag r">niet bevestigd</span></td></tr></table>
+<p class="muted">Briefing 06:30 (podcast HEEN) en 14:30 (podcast TERUG) staan klaar als concept.</p></section>
+
+<section class="card hide" id="zit"><h2>Zitplan (voorbeeld R-01)</h2>
+<p>Kleur van de stoel = status. Tik op een stoel: zie waarom en kies A, B of C.</p>
+<div id="seats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:360px"></div>
+<div id="seatinfo" class="card" style="background:#f3f3f3">Tik op een stoel.</div>
+<p class="muted">Alleen stoelnummers en codes P1 tot P5. Geen namen, geen gezondheidsdata.</p></section>
+
+<section class="card hide" id="uren"><h2>Uren en verlof</h2>
+<table><tr><th>Dag</th><th>Gepland</th><th>Gereden</th><th>Verschil</th></tr>
+<tr><td>Ma</td><td>6:15</td><td>6:50</td><td>+0:35</td></tr><tr><td>Di</td><td>6:15</td><td>6:20</td><td>+0:05</td></tr><tr><td>Wo</td><td>4:00</td><td>4:00</td><td>0</td></tr><tr><td>Do</td><td>6:15</td><td>7:05</td><td>+0:50</td></tr><tr><td>Vr</td><td>6:15</td><td>verlof</td><td>n.v.t.</td></tr>
+<tr><th>Week</th><th>29:00</th><th>24:15 + verlof</th><th>+1:30</th></tr></table>
+<h3>Verlof</h3><p>Vrijdag: verlof aangevraagd (nep) <span class="tag c">wacht op antwoord vervoerder</span></p>
+<button onclick="this.textContent='Concept verlofaanvraag klaargezet (niet verstuurd)'">Nieuwe verlofaanvraag (concept)</button></section>
+
+<section class="card hide" id="comm"><h2>Communicatie met de vervoerder</h2>
+<p>Bots maken alleen concepten. De ondernemer leest, past aan en verstuurt zelf.</p>
+<div class="mail">Aan: planning van de vervoerder
+Onderwerp: R-02 en R-05, wijziging en bevestiging
+
+Goedemorgen,
+R-02 is vanochtend gewijzigd (1 stop minder). Kunt u de nieuwe tijd bevestigen?
+R-05 staat nog niet bevestigd. Graag uw reactie voor 12:00.
+
+Met vriendelijke groet, Taxi Demo</div>
+<p><span class="tag c">concept</span> <span class="tag">nooit automatisch verstuurd</span></p>
+<h3>Lopende punten</h3><ul><li>Meeruren week 42: vraag gesteld, nog geen antwoord (nep)</li><li>Verlof vrijdag: wacht</li></ul></section>
+
+<section class="card hide" id="dos"><h2>Bewijs en dossier</h2>
+<p>Feitenlijn: planning naast wat er echt gebeurde. Rustig en feitelijk.</p>
+<table><tr><th>Tijd</th><th>Feit</th><th>Bron</th></tr>
+<tr><td>Ma 07:02</td><td>Start R-01, 8 min voor planning</td><td>rit-log (nep)</td></tr>
+<tr><td>Ma 07:58</td><td>R-02 gewijzigd via app, 7 min voor vertrek</td><td>screenshot (nep)</td></tr>
+<tr><td>Ma 16:40</td><td>R-05 eind, 35 min later dan gepland door file</td><td>navigatie-export (nep)</td></tr>
+<tr><td>Do</td><td>+0:50 uur, niet in planning</td><td>urenspiegel</td></tr></table>
+<button onclick="this.textContent='Bewijspakket week (concept) gemaakt, alleen lokaal'">Maak bewijspakket van de week</button></section>
+
+<div class="card open"><h2>Wat ontbreekt voor v1</h2><ul><li>Kiezen welke ene module plus wow de demo draagt (voorstel uit v0.1: M1 "waarom deze stop" met A/B/C).</li><li>Echte data alleen na anonimisering en een DPIA; nu alles nep.</li><li>Koppeling met het planningssysteem van de vervoerder (zit vaak achter een inlogmuur).</li><li>Urenspiegel en verlof echt laten rekenen (nu vaste nepcijfers).</li><li>Mail-leidraad voor de vervoerder opnemen; versturen blijft altijd een mens.</li><li>Verdienmodel valideren voor er gebouwd wordt; 5 pilot-chauffeurs vinden.</li><li>Doel met datum en getal (Adat): bijvoorbeeld "M1 op de demobank voor datum X".</li></ul></div><p><a href="../index.html">&larr; terug naar de lijst</a></p></main><script>
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x===b));
+['plan','zit','uren','comm','dos'].forEach(id=>document.getElementById(id).classList.toggle('hide',id!==b.dataset.t));});
+const S=[['1','P1','groen','opgehaald op tijd'],['2','P2','groen','opgehaald op tijd'],['3','','grijs','leeg'],['4','P3','oranje','stop gewijzigd door vervoerder, bevestigen?'],['5','P4','groen','opgehaald'],['6','','grijs','leeg'],['7','P5','rood','niet aanwezig bij stop, wachttijd 3 min'],['8','','grijs','leeg']];
+const K={groen:'#1A9E6E',oranje:'#F08C00',rood:'#D62828',grijs:'#bbb'};
+const box=document.getElementById('seats');
+S.forEach(s=>{const b=document.createElement('button');b.style.background=K[s[2]];b.style.color='#fff';b.style.minHeight='64px';b.textContent='Stoel '+s[0]+(s[1]?' '+s[1]:'');
+b.onclick=()=>{document.getElementById('seatinfo').innerHTML=`<b>Stoel ${s[0]} ${s[1]}</b>: ${s[3]}<div class="row"><button onclick="ch('A bevestigd')">A bevestigen</button><button onclick="ch('B: waarom? Bron getoond')">B waarom?</button><button onclick="ch('C: later')">C nu niet</button></div><div id="keuze" class="muted"></div>`;};box.appendChild(b);});
+function ch(t){document.getElementById('keuze').textContent='Gekozen: '+t+' (nep, alleen in deze demo)';}
+</script></body></html>
